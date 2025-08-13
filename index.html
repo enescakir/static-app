@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HELLO WORLD!!! — 90s Flash</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* ✨ Maximalist late-90s vibes */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #0ff;
+      font-family: "Comic Sans MS", "Comic Sans", cursive, fantasy;
+      /* Starry tiled look, but CSS-only */
+      background-image:
+        radial-gradient(#444 1px, transparent 1px),
+        radial-gradient(#222 1px, transparent 1px),
+        radial-gradient(#0a0 1px, transparent 1px);
+      background-size: 3px 3px, 5px 5px, 7px 7px;
+      background-position: 0 0, 1px 2px, 2px 1px;
+      image-rendering: pixelated;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px;
+      text-align: center;
+    }
+
+    /* Animated rainbow text (because of course) */
+    .rainbow {
+      display: inline-block;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(
+        90deg,
+        red, orange, yellow, lime, cyan, blue, magenta, red
+      );
+      background-size: 800% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: hueShift 4s linear infinite;
+      text-shadow: 0 0 8px rgba(255,255,255,0.35);
+    }
+
+    @keyframes hueShift {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* Blink like it’s 1997 (modern CSS version) */
+    .blink {
+      animation: blinker 0.7s steps(1, end) infinite;
+    }
+    @keyframes blinker {
+      50% { opacity: 0; }
+    }
+
+    /* Chrome borders and button-y look using tables (period-correct) */
+    .chrome-box {
+      margin: 18px auto;
+      border: 6px ridge #0ff;
+      background: #001a1a;
+      padding: 12px;
+      box-shadow: 0 0 25px rgba(0,255,255,0.35), inset 0 0 20px rgba(0,255,255,0.2);
+    }
+
+    .divider {
+      border: 0;
+      height: 10px;
+      background: repeating-linear-gradient(90deg, #0ff 0 12px, #f0f 12px 24px, #ff0 24px 36px);
+      box-shadow: 0 0 12px #0ff;
+      margin: 18px 0;
+    }
+
+    .small {
+      font-size: 12px;
+      color: #fff;
+      text-shadow: 0 0 6px #0ff;
+    }
+
+    .counter {
+      display: inline-block;
+      background: #010;
+      padding: 6px 10px;
+      border: 4px groove #0ff;
+      font-weight: bold;
+      color: #0f0;
+    }
+
+    /* Floating sparkle stickers */
+    .sparkle {
+      position: fixed;
+      top: -20px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 6px #fff);
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <marquee behavior="alternate" scrollamount="18" scrolldelay="35">
+      <span class="rainbow" style="font-size: 60px;">HELLO WORLD!!!</span>
+    </marquee>
+
+    <hr class="divider" />
+
+    <div class="chrome-box">
+      <marquee direction="left" scrollamount="10" onmouseover="this.stop();" onmouseout="this.start();">
+        <span style="font-size:32px; color: #ff0; text-shadow: 0 0 8px #f0f, 0 0 14px #0ff;">Welcome to my totally radical homepage</span>
+        &nbsp;🌐&nbsp;
+        <span class="blink" style="font-size:32px; color:#f0f;">Now with 100% more <b>&lt;marquee&gt;</b>!</span>
+        &nbsp;⭐&nbsp;
+        <span style="font-size:32px; color:#0f0;">Best viewed in 800×600</span>
+      </marquee>
+    </div>
+
+    <hr class="divider" />
+
+    <table align="center" width="90%" cellpadding="8" cellspacing="0" border="0">
+      <tr>
+        <td align="center">
+          <div class="counter">Visitor #<span id="visitors">000001</span></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="small" align="center">
+          <blink class="blink">UNDER CONSTRUCTION</blink> 🚧 Check back soon for more blinking text and animated GIFs!
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // Fake visitor counter for retro charm
+    const v = document.getElementById('visitors');
+    const n = Math.floor(Math.random() * 999999) + 1;
+    v.textContent = String(n).padStart(6, '0');
+
+    // Sprinkle a few sparkles falling down the page (no images, pure CSS)
+    const colors = ['#fff', '#ff0', '#0ff', '#f0f', '#0f0'];
+    for (let i = 0; i < 20; i++) {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = Math.random() * 100 + 'vw';
+      s.style.background = colors[Math.floor(Math.random()*colors.length)];
+      s.style.animationDuration = (6 + Math.random()*6).toFixed(1) + 's';
+      s.style.animationDelay = (Math.random()*4).toFixed(2) + 's';
+      document.body.appendChild(s);
+    }
+  </script>
+</body>
+</html>
